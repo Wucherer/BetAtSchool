@@ -37,3 +37,4 @@ C:\Users\Wucki\Desktop\Projects\5.Klasse\SYP(KAA)\BetAtSchool\BetAtSchoolClient\
 C:\Users\Wucki\Desktop\Projects\5.Klasse\SYP(KAA)\BetAtSchool\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.dll
 C:\Users\Wucki\Desktop\Projects\5.Klasse\SYP(KAA)\BetAtSchool\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.pdb
 C:\Users\Wucki\Desktop\Projects\5.Klasse\SYP(KAA)\BetAtSchool\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.csprojResolveAssemblyReference.cache
+C:\Users\Wucki\Desktop\Projects\5.Klasse\SYP(KAA)\BetAtSchool\BetAtSchoolClient\BetAtSchoolClient\bin\Kendo.Mvc.dll
