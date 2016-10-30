@@ -6,18 +6,33 @@
         var msgPass = $('#msgPassword');
 
         if (Username.val() == "") {
-            msgUser.text("Username not set !");
-            
-        } else {
-            msgUser.text('');
+
             if (Password.val() == "") {
-                msgPass.val('Password not set !');
+                msgUser.text("Username not set !");
+                msgPass.text("Password not set !");
+            } else {
+                msgPass.text("");
             }
-            else {
-                //ajax call folgt
+        } else {
+            msgUser.text("");
+            if (Password.val() == "") {
+                msgPass.text("Password not set !");
+            } else {
+                msgPass.text("");
+                $.ajax(
+                {
+                    type: 'POST',
+                    url: '@Url.Action("returnUser", "Login")',
+                    dataType: 'json',
+                    data: { username: Username.val(), password: Password.val() },
+                    success: function (result) {
+                        //window.open("/User/Index");
+                        alert(result);
+                    }
+                });
             }
-        }
-        
+    }
+
     }
 </script>
 @{
@@ -46,7 +61,7 @@
         margin: 0;
     }
 
-    #msgPassword, #msgLogin {
+    #msgPassword, #msgUsername {
         color: red;
     }
 
