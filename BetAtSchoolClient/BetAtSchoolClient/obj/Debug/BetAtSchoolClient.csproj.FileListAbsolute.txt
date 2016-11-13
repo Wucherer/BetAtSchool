@@ -77,7 +77,3 @@ C:\Users\John_13\Desktop\Schule\5. Klasse\SYP KAA\B@S\BetAtSchoolClient\BetAtSch
 C:\Users\John_13\Desktop\Schule\5. Klasse\SYP KAA\B@S\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.csprojResolveAssemblyReference.cache
 C:\Users\John_13\Desktop\Schule\5. Klasse\SYP KAA\B@S\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.dll
 C:\Users\John_13\Desktop\Schule\5. Klasse\SYP KAA\B@S\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.pdb
-C:\Users\John_13\Desktop\Schule\5. Klasse\SYP KAA\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\EntityFramework.dll
-C:\Users\John_13\Desktop\Schule\5. Klasse\SYP KAA\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\EntityFramework.SqlServer.dll
-C:\Users\John_13\Desktop\Schule\5. Klasse\SYP KAA\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\EntityFramework.xml
-C:\Users\John_13\Desktop\Schule\5. Klasse\SYP KAA\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\EntityFramework.SqlServer.xml

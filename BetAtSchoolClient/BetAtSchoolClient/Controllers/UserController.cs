@@ -8,11 +8,23 @@ namespace BetAtSchoolClient.Controllers
 {
     public class UserController : Controller
     {
+        ControllerHelper ch = new ControllerHelper();
         //
         // GET: /User/
         public ActionResult Index()
         {
             return View();
         }
+
+        
+        public ActionResult getAllStations()
+        {
+            return Json(ch.getAllStationNames(), JsonRequestBehavior.AllowGet);
+        }
+
+
+
+       
+        
 	}
 }

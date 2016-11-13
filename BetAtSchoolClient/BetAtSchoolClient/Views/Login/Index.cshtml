@@ -6,9 +6,8 @@
         var msgPass = $('#msgPassword');
 
         if (Username.val() == "") {
-
+            msgUser.text("Username not set !");
             if (Password.val() == "") {
-                msgUser.text("Username not set !");
                 msgPass.text("Password not set !");
             } else {
                 msgPass.text("");
@@ -19,9 +18,17 @@
                 msgPass.text("Password not set !");
             } else {
                 msgPass.text("");
-               
-
-                alert('yolo');
+                $.ajax(
+                {
+                    type: 'POST',
+                    url: '@Url.Action("returnUser", "Login")',
+                    data: { username: Username.val(), password: Password.val() },
+                    success: function (result) {
+                       
+                        $("#body").html(result);
+                     
+                    }
+                });
             }
     }
 
