@@ -13,8 +13,17 @@
     {
     }
     function CbxCh(e) {
-        alert('xxx.com');
-        $("#stations").kendoComboBox().dataSource().read();
+        $.ajax(
+               {
+                   type: 'GET',
+                   url: '@Url.Action("getAllStations", "User")',
+                   success: function (result) {
+                       var cb = $("#stations").data("kendoComboBox");
+                       cb.setDataSource(result);
+
+
+                   }
+               });
     }
 
 
