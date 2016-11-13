@@ -12,7 +12,10 @@
     function btnStartClick(e)
     {
     }
-
+    function CbxCh(e) {
+        alert('xxx.com');
+        $("#stations").kendoComboBox().dataSource().read();
+    }
 
 
 </script>
@@ -38,9 +41,9 @@
               source.Read(read =>
               {
                   read.Action("getAllStations", "User");
-              })
-              .ServerFiltering(true);
-          })
+              });
+              
+          }).Events(e=>e.Open("CbxCh"))
                                                                 )
     
     </div>);

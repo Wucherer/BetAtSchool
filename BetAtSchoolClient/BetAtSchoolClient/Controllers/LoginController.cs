@@ -31,7 +31,7 @@ namespace BetAtSchoolClient.Controllers
 
             Session["currentGuide"] = "asdf";
 
-            return View("../User/Index");
+            return RedirectToAction("../User/Index");
         }
     }
 }
