@@ -23,11 +23,11 @@
                 {
                     type: 'POST',
                     url: '@Url.Action("returnUser", "Login")',
-                    dataType: 'json',
                     data: { username: Username.val(), password: Password.val() },
                     success: function (result) {
-                        //window.open("/User/Index");
-                        alert(result);
+                       
+                        $("#body").html(result);
+                     
                     }
                 });
             }

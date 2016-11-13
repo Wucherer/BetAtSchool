@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BetAtSchoolClient.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,7 +19,19 @@ namespace BetAtSchoolClient.Controllers
 
         public ActionResult returnUser(string username, string password)
         {
-            return Content("asad");
+            //UserGuide u = ch.getUser();
+            string s = null;
+            if(s == null)
+            {
+                s = "../User/NotFound";
+            } else
+            {
+                s = "../User/Index";
+            }
+
+            Session["currentGuide"] = "asdf";
+
+            return View("../User/Index");
         }
     }
 }
