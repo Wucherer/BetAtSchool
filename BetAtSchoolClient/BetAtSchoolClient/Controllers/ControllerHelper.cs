@@ -43,7 +43,12 @@ namespace BetAtSchoolClient.Controllers
             }
         }
 
-        public List<String> getAllStationNames()
+        public string getCurrentPlayer(string guide)
+        {
+            return "dave";
+        }
+
+        public List<string> getAllStationNames()
         {
             getAllStations();
             names = new List<string>();
@@ -54,11 +59,16 @@ namespace BetAtSchoolClient.Controllers
             return names;
         }
 
-        
+        public Station getQuestions(string name)
+        {
+            Station s = new Station();
+            return s;
+            //get Questions to station
+        }
 
         public bool hasGuest()
         {
-            bool result = false;
+            bool result = true;
 
             return result;
         }

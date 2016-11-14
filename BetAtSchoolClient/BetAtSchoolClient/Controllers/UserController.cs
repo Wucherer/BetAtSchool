@@ -22,9 +22,15 @@ namespace BetAtSchoolClient.Controllers
             return Json(ch.getAllStationNames(), JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult QuestionView(string name)
+        {
+            return View(ch.getQuestions(name));
+        }
 
 
-       
-        
-	}
+
+
+
+
+    }
 }
