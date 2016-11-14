@@ -14,24 +14,27 @@ namespace BetAtSchoolClient.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View();
+            UserGuide ug = new UserGuide("test", "test");
+            return View(ug);
         }
 
         public ActionResult returnUser(string username, string password)
         {
             UserGuide u = ch.getUser(username, password);
+
+            Session["currentGuide"] = u;
+
+
             string s = null;
-            if(u == null)
-            {
-                s = "../User/NotFound";
-            } else
+            if(u != null)
             {
                 s = "../User/Index";
+            }else
+            {
+                s = "../Login/Index";
             }
 
-            Session["currentGuide"] = "asdf";
-
-            return RedirectToAction(s);
+            return View(s, u);
         }
     }
 }

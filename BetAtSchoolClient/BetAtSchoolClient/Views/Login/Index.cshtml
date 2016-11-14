@@ -24,8 +24,8 @@
                     url: '@Url.Action("returnUser", "Login")',
                     data: { username: Username.val(), password: Password.val() },
                     success: function (result) {
-                       
-                        $("#body").html(result);
+                            $("#body").html(result);
+                        
                      
                     }
                 });
@@ -43,8 +43,17 @@
     <p class="title">Login</p>
     @Html.Kendo().PanelBar().Name("panelLogin").Items(items => {
         items.Add().Text("Username").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtUsername") <label id="msgUsername"></label></div>);
-        items.Add().Text("Passwort").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtPassword") <label id="msgPassword"></label></div>); })
-    @Html.Kendo().Button().Name("btnSumbmit").Content("Login").Events(e => e.Click("btnLoginClick")) <label id="msgLogin"></label>
+        items.Add().Text("Passwort").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtPassword").HtmlAttributes(new { type = "password" }) <label id="msgPassword"></label></div>); })
+    @if (Model == null)
+    {
+        @Html.Kendo().Button().Name("btnSumbmit").Content("Login").Events(e => e.Click("btnLoginClick")) <label id="msgLogin">Password or Username not correct !</label>
+        Layout = null;
+    }
+    else
+    {
+        @Html.Kendo().Button().Name("btnSumbmit").Content("Login").Events(e => e.Click("btnLoginClick")) <label id="msgLogin"></label>
+
+    }
 </div>
 
 <style>
@@ -60,7 +69,7 @@
         margin: 0;
     }
 
-    #msgPassword, #msgUsername {
+    #msgPassword, #msgUsername, #msgLogin {
         color: red;
     }
 

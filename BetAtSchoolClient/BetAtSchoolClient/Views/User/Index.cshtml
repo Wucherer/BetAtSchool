@@ -1,10 +1,11 @@
 ﻿@using BetAtSchoolClient.Controllers;
+@using BetAtSchoolClient.Models;
 @{
     ViewBag.Title = "Index";
     Layout = null;
     ControllerHelper ch = new ControllerHelper();
     bool hasGuest = ch.hasGuest();
-    string guide = Session["currentGuide"] as string;
+    UserGuide guide = Session["currentGuide"] as UserGuide;
     string currentPlayer = ch.getCurrentPlayer(guide);
 }
 

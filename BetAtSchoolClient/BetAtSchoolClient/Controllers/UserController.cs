@@ -24,7 +24,7 @@ namespace BetAtSchoolClient.Controllers
 
         public ActionResult QuestionView(string name)
         {
-            return View(ch.getQuestions(name));
+            return View();
         }
 
 
