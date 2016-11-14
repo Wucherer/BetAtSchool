@@ -24,9 +24,7 @@
                     url: '@Url.Action("returnUser", "Login")',
                     data: { username: Username.val(), password: Password.val() },
                     success: function (result) {
-                            $("#body").html(result);
-                        
-                     
+                            $("#body").html(result);                    
                     }
                 });
             }
@@ -47,12 +45,13 @@
         items.Add().Text("Passwort").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtPassword").HtmlAttributes(new { type = "password" }) <label id="msgPassword"></label></div>); })
     @if (Model == null)
     {
+        HttpContext.Current.Session.Add("passwordWrong", "isSet");
         @Html.Kendo().Button().Name("btnSumbmit").Content("Login").Events(e => e.Click("btnLoginClick")) <label id="msgLogin">Password or Username not correct !</label>
-        Layout = null;
     }
     else
     {
-        @Html.Kendo().Button().Name("btnSumbmit").Content("Login").Events(e => e.Click("btnLoginClick")) <label id="msgLogin"></label>
+       HttpContext.Current.Session.Add("passwordWrong", "notSet");
+       @Html.Kendo().Button().Name("btnSumbmit").Content("Login").Events(e => e.Click("btnLoginClick")) <label id="msgLogin"></label>
 
     }
 </div>
