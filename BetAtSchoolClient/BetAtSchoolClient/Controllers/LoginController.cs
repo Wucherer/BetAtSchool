@@ -19,9 +19,9 @@ namespace BetAtSchoolClient.Controllers
 
         public ActionResult returnUser(string username, string password)
         {
-            //UserGuide u = ch.getUser();
+            UserGuide u = ch.getUser(username, password);
             string s = null;
-            if(s == null)
+            if(u == null)
             {
                 s = "../User/NotFound";
             } else
@@ -31,7 +31,7 @@ namespace BetAtSchoolClient.Controllers
 
             Session["currentGuide"] = "asdf";
 
-            return RedirectToAction("../User/Index");
+            return RedirectToAction(s);
         }
     }
 }

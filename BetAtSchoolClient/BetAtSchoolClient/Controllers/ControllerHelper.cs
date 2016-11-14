@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
+using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Web;
 
@@ -12,11 +13,18 @@ namespace BetAtSchoolClient.Controllers
         public List<Station> Allstations { get; set; }
         public List<string> names { get; set; }
         string cs = "Provider=OraOLEDB.Oracle;Data Source=212.152.179.117/ora11g;User Id=d5b21;Password=wucki;OLEDB.NET=True;";
-        public UserGuide getUser()
+        public UserGuide getUser(string user, string pw)
         {
-            UserGuide ug = new UserGuide();
+            UserGuide ug = null;
 
-            //AD - connection
+            using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "gandalf.htl-villach.at", "OU=EDVO,OU=Schueler,OU=Benutzer,DC=htl-vil,DC=local"))
+            {
+                // validate the credentials
+                if(pc.ValidateCredentials(user, pw))
+                {
+                    ug = new UserGuide(user, pw);
+                }
+            }
 
             return ug;
         }
@@ -43,7 +51,7 @@ namespace BetAtSchoolClient.Controllers
             }
         }
 
-        public List<String> getAllStationNames()
+        public List<string> getAllStationNames()
         {
             getAllStations();
             names = new List<string>();

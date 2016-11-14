@@ -7,6 +7,15 @@ namespace BetAtSchoolClient.Models
 {
     public class UserGuide
     {
+        private string user;
+        private string pw;
+
+        public UserGuide(string user, string pw)
+        {
+            this.user = user;
+            this.pw = pw;
+        }
+
         string Username { get; set; }
         string Password { get; set; }
     }
