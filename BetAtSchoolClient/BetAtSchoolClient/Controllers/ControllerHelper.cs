@@ -53,12 +53,13 @@ namespace BetAtSchoolClient.Controllers
 
         public List<string> getAllStationNames()
         {
-            getAllStations();
+           // getAllStations();
             names = new List<string>();
-            foreach(Station s in this.Allstations)
+            /*foreach(Station s in this.Allstations)
             {
                 names.Add(s.StationName);
-            }
+            }*/
+            names.Add("asdf");
             return names;
         }
 

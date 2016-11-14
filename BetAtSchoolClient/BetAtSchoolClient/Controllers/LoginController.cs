@@ -34,7 +34,7 @@ namespace BetAtSchoolClient.Controllers
                 s = "../Login/Index";
             }
 
-            return View("../User/Index", u);
+            return View(s, u);
         }
     }
 }

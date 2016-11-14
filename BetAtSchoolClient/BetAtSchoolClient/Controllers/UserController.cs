@@ -22,15 +22,22 @@ namespace BetAtSchoolClient.Controllers
             return Json(ch.getAllStationNames(), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult QuestionView(string name)
+        public ActionResult QuestionView()
         {
+            string s = HttpContext.Session["currentQuestion"] as string;
+            if (s != null)
+            {
+                HttpContext.Session["currentQuestion"] = (int.Parse(s) + 1).ToString();
+            }
+            else { HttpContext.Session.Add("currentQuestion", "0"); }
+            
             return View();
         }
 
-
-
-
-
-
+        public ActionResult setStation(string name)
+        {
+            HttpContext.Session.Add("currentStation", name);
+            return RedirectToAction("QuestionView", "User");
+        }
     }
 }

@@ -17,12 +17,13 @@
         var username = $('#txtNickname');
         var cb = $("#stations").data("kendoComboBox");
         var text = cb.value();
+        alert(text);
         if (text != null)
         {
             $.ajax(
                 {
                     type: 'GET',
-                    url: '@Url.Action("QuestionView", "User")',
+                    url: '@Url.Action("setStation", "User")',
                     data: { name: text },
                     success: function (result) {
                         $("#body").html(result);
