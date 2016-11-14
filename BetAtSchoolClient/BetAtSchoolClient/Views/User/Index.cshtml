@@ -5,12 +5,23 @@
     ControllerHelper ch = new ControllerHelper();
     bool hasGuest = ch.hasGuest();
     string guide = Session["currentGuide"] as string;
-    //string currentPlayer = ch.getCurrentPlayer(guide);
+    string currentPlayer = ch.getCurrentPlayer(guide);
 }
 
 <script>
     function btnStartClick(e)
     {
+        var text = this.text();
+
+        $.ajax(
+                {
+                    type: 'POST',
+                    url: '@Url.Action("QuestionView", "User")',
+                    data: { name: text },
+                    success: function (result) {
+                        $("#body").html(result);
+                    }
+                });
     }
     function CbxCh(e) {
         $.ajax(
@@ -29,15 +40,25 @@
 
 </script>
 <div id="Login-content" class="demo-section k-content">
-    <p class="title">Register Guest</p>
+    @if(hasGuest == false)
+    {
+        <p class="title">Register Guest</p>
+    }
+    else
+    {
+        <p class="title">Select Station</p>
+    }
     @Html.Kendo().PanelBar().Name("panelRegister").Items(items =>
 {
-    if (hasGuest == false)
-    {
-        items.Add().Text("Nickname of Guest").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname") <label id="msgUsername"></label></div>);
-    }
+if (hasGuest == false)
+{
+    items.Add().Text("Nickname of Guest").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname") <label id="msgUsername"></label></div>);
+}
+else {
+    items.Add().Text("currently playing: " + currentPlayer).Expanded(false);
+}
 
-        items.Add().Text("Station").Expanded(true).Content(@<div>
+items.Add().Text("Station").Expanded(true).Content(@<div>
         @(Html.Kendo().ComboBox()
           .Name("stations")
           .Placeholder("Select station")
