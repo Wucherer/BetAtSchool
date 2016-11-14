@@ -116,3 +116,42 @@ C:\Users\Anwender\Desktop\HTL\5BHIFS\SYP(PRE-KAA)\Bet-at-school\BetAtSchoolClien
 C:\Users\Anwender\Desktop\HTL\5BHIFS\SYP(PRE-KAA)\Bet-at-school\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.csprojResolveAssemblyReference.cache
 C:\Users\Anwender\Desktop\HTL\5BHIFS\SYP(PRE-KAA)\Bet-at-school\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.dll
 C:\Users\Anwender\Desktop\HTL\5BHIFS\SYP(PRE-KAA)\Bet-at-school\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.pdb
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\ApplicationInsights.config
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\BetAtSchoolClient.dll.config
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\BetAtSchoolClient.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\BetAtSchoolClient.pdb
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Antlr3.Runtime.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.AI.Web.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.ApplicationInsights.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Newtonsoft.Json.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.Helpers.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.Mvc.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.Optimization.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.Razor.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.WebPages.Deployment.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.WebPages.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.WebPages.Razor.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\WebGrease.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Antlr3.Runtime.pdb
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.AI.Web.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Microsoft.ApplicationInsights.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\Newtonsoft.Json.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.Helpers.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.Mvc.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.Optimization.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.Razor.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.WebPages.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.WebPages.Deployment.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\bin\System.Web.WebPages.Razor.xml
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.csprojResolveAssemblyReference.cache
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.dll
+C:\Users\John_13\Desktop\Schule\5. Klasse\B@S\BetAtSchoolClient\BetAtSchoolClient\obj\Debug\BetAtSchoolClient.pdb
