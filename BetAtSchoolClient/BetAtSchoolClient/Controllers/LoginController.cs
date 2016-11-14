@@ -20,8 +20,8 @@ namespace BetAtSchoolClient.Controllers
 
         public ActionResult returnUser(string username, string password)
         {
-            UserGuide u = ch.getUser(username, password);
-
+            //UserGuide u = ch.getUser(username, password);
+            UserGuide u = new UserGuide("", "");
             Session["currentGuide"] = u;
 
 
