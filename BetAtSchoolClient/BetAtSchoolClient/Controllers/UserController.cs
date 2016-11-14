@@ -13,13 +13,14 @@ namespace BetAtSchoolClient.Controllers
         // GET: /User/
         public ActionResult Index()
         {
-            ch.getAll();
             return View();
         }
 
         
         public ActionResult getAllStations()
         {
+            ch.getAll();
+
             return Json(ch.getAllStationNames(), JsonRequestBehavior.AllowGet);
         }
 
