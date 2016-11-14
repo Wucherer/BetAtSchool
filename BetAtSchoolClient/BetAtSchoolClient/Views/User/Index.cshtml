@@ -5,24 +5,39 @@
     Layout = null;
     ControllerHelper ch = new ControllerHelper();
     bool hasGuest = ch.hasGuest();
-    UserGuide guide = Session["currentGuide"] as UserGuide;
+    UserGuide guide = HttpContext.Current.Session["currentGuide"] as UserGuide;
     string currentPlayer = ch.getCurrentPlayer(guide);
+    HttpContext.Current.Session.Add("currentPlayer", currentPlayer);
 }
-
+<title>Manage User</title>
 <script>
     function btnStartClick(e)
     {
-        var text = this.text();
-
-        $.ajax(
+        var msg = $('#msgLogin');
+        var username = $('#txtNickname');
+        var cb = $("#stations").data("kendoComboBox");
+        var text = cb.value();
+        if (text != null)
+        {
+            $.ajax(
                 {
-                    type: 'POST',
+                    type: 'GET',
                     url: '@Url.Action("QuestionView", "User")',
                     data: { name: text },
                     success: function (result) {
                         $("#body").html(result);
                     }
                 });
+        } else {
+            msg.text("Please select Station !");
+            if (username.val() == "")
+            {
+                msg.text("Please select Station and create User !");
+            }
+            
+        }
+
+
     }
     function CbxCh(e) {
         $.ajax(

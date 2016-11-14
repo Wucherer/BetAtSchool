@@ -15,7 +15,5 @@ namespace BetAtSchoolClient.Models
             this.Username = user;
             this.Password = pw;
         }
-
-
     }
 }
