@@ -73,6 +73,78 @@ namespace BetAtSchoolClient.Controllers
 
             return result;
         }
+
+        public  List<Station> getAll()
+        {
+
+            List<Station> stations = new List<Station>();
+            string connectionString = "Provider=OraOLEDB.Oracle;Data Source=212.152.179.117/ora11g;User Id=d5b22;Password=wucki;OLEDB.NET=True;";
+            using (OleDbConnection oleDbConnection = new OleDbConnection(connectionString))
+            {
+                OleDbCommand oleDbCommand = new OleDbCommand("select * from station");
+                oleDbConnection.Open();
+                oleDbCommand.Connection = oleDbConnection;
+                OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+
+                while (oleDbDataReader.Read())
+                {
+                    int id = (int)oleDbDataReader.GetDecimal(0);
+                    string sname = (string)oleDbDataReader.GetString(1);
+                    Station s = new Station(sname, id);
+                    stations.Add(s);
+                }
+            }
+
+            foreach (Station s in stations)
+            {
+                using (OleDbConnection oleDbConnection = new OleDbConnection(connectionString))
+                {
+                    OleDbCommand oleDbCommand = new OleDbCommand("select * from question where question.station_id = ?");
+                    oleDbCommand.Parameters.Add("?", s.StationID);
+                    oleDbConnection.Open();
+                    oleDbCommand.Connection = oleDbConnection;
+                    OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+
+                    while (oleDbDataReader.Read())
+                    {
+                        Question q = null;
+                        int qid = (int)oleDbDataReader.GetDecimal(0);
+                        string desc = (string)oleDbDataReader.GetString(1);
+                        int quote = (int)oleDbDataReader.GetDecimal(3);
+                        q = new Question(qid, desc, quote, -1);
+                        s.Questions.Add(q);
+                    }
+                }
+                foreach (Question q in s.Questions)
+                {
+                    using (OleDbConnection oleDbConnection = new OleDbConnection(connectionString))
+                    {
+                        OleDbCommand oleDbCommand = new OleDbCommand("select * from answer where quest_id = ?");
+                        oleDbCommand.Parameters.Add("?", q.QId);
+                        oleDbConnection.Open();
+                        oleDbCommand.Connection = oleDbConnection;
+                        OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+
+                        while (oleDbDataReader.Read())
+                        {
+                            Answer a = null;
+                            int aid = (int)oleDbDataReader.GetDecimal(0);
+                            string desc = (string)oleDbDataReader.GetString(1);
+                            int corr = (int)oleDbDataReader.GetDecimal(3);
+
+                            if (corr == 1)
+                                q.CorrectAnswer = aid;
+                            a = new Answer(aid, desc);
+                            q.Answers.Add(a);
+                        }
+                    }
+                }
+
+            }
+
+
+            return stations;
+        }
     }
 
 
