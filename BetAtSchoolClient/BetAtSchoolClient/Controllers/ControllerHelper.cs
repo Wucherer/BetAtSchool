@@ -16,7 +16,7 @@ namespace BetAtSchoolClient.Controllers
         public UserGuide getUser(string user, string pw)
         {
             UserGuide ug = null;
-
+            /*
             using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "gandalf.htl-villach.at", "OU=EDVO,OU=Schueler,OU=Benutzer,DC=htl-vil,DC=local"))
             {
                 // validate the credentials
@@ -24,8 +24,8 @@ namespace BetAtSchoolClient.Controllers
                 {
                     ug = new UserGuide(user, pw);
                 }
-            }
-
+            }*/
+            ug = new UserGuide("harald", "hh");
             return ug;
         }
 

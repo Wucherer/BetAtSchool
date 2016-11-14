@@ -22,10 +22,10 @@ namespace BetAtSchoolClient.Controllers
         {
             UserGuide u = ch.getUser(username, password);
 
-            Session["currentGuide"] = u;
-
-
+            HttpContext.Session.Add("currentGuide", u);
+            
             string s = null;
+
             if(u != null)
             {
                 s = "../User/Index";
@@ -34,7 +34,7 @@ namespace BetAtSchoolClient.Controllers
                 s = "../Login/Index";
             }
 
-            return View(s, u);
+            return View("../User/Index", u);
         }
     }
 }
