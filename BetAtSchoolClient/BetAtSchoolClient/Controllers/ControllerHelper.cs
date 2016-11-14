@@ -12,6 +12,7 @@ namespace BetAtSchoolClient.Controllers
     {
         public List<Station> Allstations { get; set; }
         public List<string> names { get; set; }
+        
         string cs = "Provider=OraOLEDB.Oracle;Data Source=212.152.179.117/ora11g;User Id=d5b21;Password=wucki;OLEDB.NET=True;";
         public UserGuide getUser(string user, string pw)
         {
@@ -29,36 +30,13 @@ namespace BetAtSchoolClient.Controllers
             return ug;
         }
 
-        private void getAllStations()
-        {
-            Allstations = new List<Station>();
-
-            using (OleDbConnection oleDbConnection = new OleDbConnection(cs))
-            {
-                OleDbCommand oleDbCommand = new OleDbCommand("select * from Station");
-                oleDbConnection.Open();
-                oleDbCommand.Connection = oleDbConnection;
-                OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
-                int currQId = 0;
-                Station s;
-                while (oleDbDataReader.Read())
-                {
-                    decimal id = oleDbDataReader.GetDecimal(0);
-                    string name = oleDbDataReader.GetString(1);
-                    s = new Station(name, id);
-                    Allstations.Add(s);
-                }
-            }
-        }
-
         public List<string> getAllStationNames()
         {
-           // getAllStations();
             names = new List<string>();
-            /*foreach(Station s in this.Allstations)
+            foreach(Station s in this.Allstations)
             {
                 names.Add(s.StationName);
-            }*/
+            }
             names.Add("asdf");
             return names;
         }
@@ -75,7 +53,7 @@ namespace BetAtSchoolClient.Controllers
             return result;
         }
 
-        public  List<Station> getAll()
+        public void getAll()
         {
 
             List<Station> stations = new List<Station>();
@@ -144,9 +122,16 @@ namespace BetAtSchoolClient.Controllers
             }
 
 
-            return stations;
+            Allstations = stations;
+        }
+
+        public Station getStationByName(string name)
+        {
+            var temp = Allstations.Where(x => x.StationName == name).ToList();
+
+            Station s = temp.FirstOrDefault();
+
+            return s;
         }
     }
-
-
-}
+ }

@@ -13,6 +13,7 @@ namespace BetAtSchoolClient.Controllers
         // GET: /User/
         public ActionResult Index()
         {
+            ch.getAll();
             return View();
         }
 
@@ -30,8 +31,10 @@ namespace BetAtSchoolClient.Controllers
                 HttpContext.Session["currentQuestion"] = (int.Parse(s) + 1).ToString();
             }
             else { HttpContext.Session.Add("currentQuestion", "0"); }
-            
-            return View();
+
+            string currStation = HttpContext.Session["currentStation"] as string;
+
+            return View(ch.getStationByName(currStation));
         }
 
         public ActionResult setStation(string name)
