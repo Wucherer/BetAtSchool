@@ -13,31 +13,31 @@ namespace BetAtSchoolClient.Controllers
         public List<Station> Allstations { get; set; }
         public List<string> names { get; set; }
         
-        string cs = "Provider=OraOLEDB.Oracle;Data Source=212.152.179.117/ora11g;User Id=d5b21;Password=wucki;OLEDB.NET=True;";
+        string cs = "Provider=OraOLEDB.Oracle;Data Source=aphrodite4/ora11g;User Id=d5b21;Password=wucki;OLEDB.NET=True;";
         public UserGuide getUser(string user, string pw)
         {
             UserGuide ug = null;
-            /*
-            using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "gandalf.htl-villach.at", "OU=EDVO,OU=Schueler,OU=Benutzer,DC=htl-vil,DC=local"))
+            
+            using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "192.168.128.253", "OU=EDVO,OU=Schueler,OU=Benutzer,DC=htl-vil,DC=local"))
             {
                 // validate the credentials
                 if(pc.ValidateCredentials(user, pw))
                 {
                     ug = new UserGuide(user, pw);
                 }
-            }*/
-            ug = new UserGuide("harald", "hh");
+            }
+            
             return ug;
         }
 
-        public List<string> getAllStationNames()
+        public List<string> getAllStationNames(List<Station> AllStationsx)
         {
             names = new List<string>();
-            foreach(Station s in this.Allstations)
+            foreach(Station s in AllStationsx)
             {
                 names.Add(s.StationName);
             }
-            names.Add("asdf");
+           
             return names;
         }
 
@@ -53,11 +53,11 @@ namespace BetAtSchoolClient.Controllers
             return result;
         }
 
-        public void getAll()
+        public List<Station> getAll()
         {
 
             List<Station> stations = new List<Station>();
-            string connectionString = "Provider=OraOLEDB.Oracle;Data Source=212.152.179.117/ora11g;User Id=d5b22;Password=wucki;OLEDB.NET=True;";
+            string connectionString = "Provider=OraOLEDB.Oracle;Data Source=aphrodite4/ora11g;User Id=d5b22;Password=wucki;OLEDB.NET=True;";
             using (OleDbConnection oleDbConnection = new OleDbConnection(connectionString))
             {
                 OleDbCommand oleDbCommand = new OleDbCommand("select * from station");
@@ -121,13 +121,13 @@ namespace BetAtSchoolClient.Controllers
 
             }
 
-
-            Allstations = stations;
+            Allstations = stations;               
+            return stations;
         }
 
-        public Station getStationByName(string name)
+        public Station getStationByName(string name, List<Station> all)
         {
-            var temp = Allstations.Where(x => x.StationName == name).ToList();
+            var temp = all.Where(x => x.StationName == name).ToList();
 
             Station s = temp.FirstOrDefault();
 
