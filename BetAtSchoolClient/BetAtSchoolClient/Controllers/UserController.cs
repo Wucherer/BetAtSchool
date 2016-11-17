@@ -38,8 +38,9 @@ namespace BetAtSchoolClient.Controllers
             return View(ch.getStationByName(currStation, ch.getAll()));
         }
 
-        public ActionResult setStation(string name)
+        public ActionResult setStation(string name, string player)
         {
+            HttpContext.Session.Add("currentPlayer", player);
             HttpContext.Session.Add("currentStation", name);
             return RedirectToAction("QuestionView", "User");
         }

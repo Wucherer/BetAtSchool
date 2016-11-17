@@ -4,9 +4,9 @@
     ViewBag.Title = "Index";
     Layout = null;
     ControllerHelper ch = new ControllerHelper();
-    bool hasGuest = ch.hasGuest();
+    string currentPlayer = HttpContext.Current.Session["currentPlayer"] as string;
+
     UserGuide guide = HttpContext.Current.Session["currentGuide"] as UserGuide;
-    string currentPlayer = ch.getCurrentPlayer(guide);
     HttpContext.Current.Session.Add("currentPlayer", currentPlayer);
 }
 <title>Manage User</title>
@@ -24,7 +24,7 @@
                 {
                     type: 'GET',
                     url: '@Url.Action("setStation", "User")',
-                    data: { name: text },
+                    data: { name: text, player: username.val() },
                     success: function (result) {
                         $("#body").html(result);
                     }
@@ -57,7 +57,13 @@
 
 </script>
 <div id="Login-content" class="demo-section k-content">
-    @if(hasGuest == false)
+    <p id="currentGuide" class="demo-section k-content">currently logged in: @guide.Username</p>
+    @if (currentPlayer == null)
+    {
+        <p id="currentPlayer" class="demo-section k-content">currently playing: @currentPlayer</p>
+    }
+
+    @if(currentPlayer == null)
     {
         <p class="title">Register Guest</p>
     }
@@ -67,7 +73,7 @@
     }
     @Html.Kendo().PanelBar().Name("panelRegister").Items(items =>
 {
-if (hasGuest == false)
+if (currentPlayer == null)
 {
     items.Add().Text("Nickname of Guest").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname") <label id="msgUsername"></label></div>);
 }

@@ -46,7 +46,7 @@ namespace BetAtSchoolClient.Controllers
             return result;
         }
 
-        public bool hasGuest()
+        public bool hasGuest(UserGuide u)
         {
             bool result = true;
 
