@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using BetAtSchoolClient.Models;
+@{ 
+    UserGuide currentGuide = HttpContext.Current.Session["currentGuide"] as UserGuide;
+}
+<!DOCTYPE html>
 <html>
     <head>
         
@@ -23,7 +27,11 @@
                 </div>
                 <div class="float-right">
                     <nav>
-                        <ul id="menu">                            
+                        <ul id="menu"> 
+                            @if (currentGuide != null)
+                            {
+                                <li style="font-size: 20px">currently Logged in: @currentGuide.Username</li>
+                            }                           
                             <li style="font-size: 30px">@Html.ActionLink("About", "About", "Home")</li>
                             <li style="font-size: 30px">@Html.ActionLink("Contact", "Contact", "Home")</li>
                         </ul>

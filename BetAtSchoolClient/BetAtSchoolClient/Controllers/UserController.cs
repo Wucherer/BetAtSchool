@@ -19,9 +19,9 @@ namespace BetAtSchoolClient.Controllers
         
         public ActionResult getAllStations()
         {
-            ch.getAll();
+           
 
-            return Json(ch.getAllStationNames(), JsonRequestBehavior.AllowGet);
+            return Json(ch.getAllStationNames(ch.getAll()), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult QuestionView()
@@ -35,7 +35,7 @@ namespace BetAtSchoolClient.Controllers
 
             string currStation = HttpContext.Session["currentStation"] as string;
 
-            return View(ch.getStationByName(currStation));
+            return View(ch.getStationByName(currStation, ch.getAll()));
         }
 
         public ActionResult setStation(string name, string player)
