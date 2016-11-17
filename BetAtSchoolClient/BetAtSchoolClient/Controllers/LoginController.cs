@@ -14,7 +14,7 @@ namespace BetAtSchoolClient.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            UserGuide ug = new UserGuide("test", "test");
+            UserGuide ug = ch.getUser("s", "s");
             return View(ug);
         }
 
