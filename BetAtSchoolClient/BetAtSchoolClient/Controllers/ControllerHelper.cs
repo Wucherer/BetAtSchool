@@ -48,7 +48,7 @@ namespace BetAtSchoolClient.Controllers
 
         public bool hasGuest()
         {
-            bool result = false;
+            bool result = true;
 
             return result;
         }
@@ -127,6 +127,7 @@ namespace BetAtSchoolClient.Controllers
 
         public Station getStationByName(string name, List<Station> all)
         {
+
             var temp = all.Where(x => x.StationName == name).ToList();
 
             Station s = temp.FirstOrDefault();
