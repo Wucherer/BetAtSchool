@@ -1,8 +1,12 @@
-﻿@{
+﻿@using BetAtSchoolClient.Models;
+@{
+
     Layout = null;
 
 
     int currentQuestion = int.Parse(ViewContext.HttpContext.Session["currentQuestion"] as string);
+    string currentPlayer = HttpContext.Current.Session["currentPlayer"] as string;
+    UserGuide guide = HttpContext.Current.Session["currentGuide"] as UserGuide;
 }
 
 <script>
@@ -17,6 +21,15 @@
                     }
                 });
     }
+
+    function btnSkipClick(e)
+    {
+
+    }
+    function btnExitClick(e)
+    {
+
+    }
 </script>
 
 <!DOCTYPE html>
@@ -27,70 +40,35 @@
     <title>QuestionView</title>
 </head>
 <body>
+    <div id="currentGuide" class="demo-section k-content">currently logged in: @guide.Username</div>
+    <div id="currentGuide" class="demo-section k-content">currently playing: @currentPlayer</div>
+
     <div id="Login-content" class="demo-section k-content">
-        @try
-        {
         <p class="title">@Model.Questions[currentQuestion].Description</p>
         <ul>
             @for (int i = 0; i < Model.Questions[currentQuestion].Answers.Count; i++)
             {
-                <li>@Html.Kendo().CheckBox().Name("answer" + i)&nbsp; &nbsp; &nbsp; &nbsp; @Model.Questions[currentQuestion].Answers[i].Description</li>
+                <li>@Html.Kendo().CheckBox().Name("answer" + i) @Model.Questions[currentQuestion].Answers[i].Description</li>
             }
         </ul>
         @Html.Kendo().Button().Name("btnNext").Events(e => e.Click("btnNextClick")).Content("Next")
-        }
-        catch {
-            <p>Das Ende, vorerst...</p>
-        }
-
+        @Html.Kendo().Button().Name("btnSkip").Events(e => e.Click("btnSkipClick")).Content("Skip")
+        @Html.Kendo().Button().Name("btnExit").Events(e => e.Click("btnExitClick")).Content("Exit")
     </div>
+
 </body>
-
-
 </html>
 <style>
-   
-    ul {
-        margin-left: 20%;
-        margin-bottom: 20px;
-    }
-
-    li {
-        font-size: 20px;
-        margin-top: 20px;
-        list-style-type: none;
-    }
-
-
-    .title {
-        text-decoration: underline;
-        font-size: 25px;
-        color: darkblue;
-        margin-left: 10%;
-        margin-top: 10%;
-    }
-
     .demo-section {
         padding: 0;
-
         width: 40%;
-        margin-top:5%;
-        margin-left:30%;
+        margin-top: 5%;
+        margin-left: 30%;
     }
 
     #btnStartQuiz {
-
-        margin-top:10px;
+        margin-top: 10px;
     }
-
-    
-    #btnNext {
-        margin-bottom:10%;
-        margin-left:80%;
-        width:15%;
-    }
-
-
 
     #Login-content .title {
         font-size: 16px;
@@ -118,5 +96,4 @@
             font-size: 12px;
             color: #444;
         }
-        
 </style>
