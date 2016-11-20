@@ -19,8 +19,6 @@ namespace BetAtSchoolClient.Controllers
         
         public ActionResult getAllStations()
         {
-           
-
             return Json(ch.getAllStationNames(ch.getAll()), JsonRequestBehavior.AllowGet);
         }
 
@@ -43,6 +41,16 @@ namespace BetAtSchoolClient.Controllers
         {
             HttpContext.Session.Add("currentPlayer", player);
             HttpContext.Session.Add("currentStation", name);
+            bool b = ch.checkIfUserExists(player);
+            //Wenn false zurückkommt, kann "player" ohne Bedenken benutzt werden
+            if(!b)
+            {
+
+            }
+            else
+            {
+                
+            }
             return RedirectToAction("QuestionView", "User");
         }
 

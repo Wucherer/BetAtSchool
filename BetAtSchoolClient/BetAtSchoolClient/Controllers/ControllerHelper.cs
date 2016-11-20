@@ -12,7 +12,7 @@ namespace BetAtSchoolClient.Controllers
     {
         public List<Station> Allstations { get; set; }
         public List<string> names { get; set; }
-        
+
         string cs = "Provider=OraOLEDB.Oracle;Data Source=212.152.179.117/ora11g;User Id=d5b21;Password=wucki;OLEDB.NET=True;";
         public UserGuide getUser(string user, string pw)
         {
@@ -33,11 +33,11 @@ namespace BetAtSchoolClient.Controllers
         public List<string> getAllStationNames(List<Station> AllStationsx)
         {
             names = new List<string>();
-            foreach(Station s in AllStationsx)
+            foreach (Station s in AllStationsx)
             {
                 names.Add(s.StationName);
             }
-           
+
             return names;
         }
 
@@ -116,7 +116,7 @@ namespace BetAtSchoolClient.Controllers
 
             }
 
-            Allstations = stations;               
+            Allstations = stations;
             return stations;
         }
 
@@ -129,5 +129,30 @@ namespace BetAtSchoolClient.Controllers
 
             return s;
         }
+
+        public bool checkIfUserExists(string user)
+        {
+            int c = -1;
+            bool b = true;
+            using (OleDbConnection oleDbConnection = new OleDbConnection(cs))
+            {
+                OleDbCommand oleDbCommand = new OleDbCommand("select count(*) from USERTDOT where username = ?;");
+                oleDbCommand.Parameters.Add("?", user);
+                oleDbConnection.Open();
+                oleDbCommand.Connection = oleDbConnection;
+                OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+
+                while (oleDbDataReader.Read())
+                {
+                    c = (int)oleDbDataReader.GetDecimal(0);
+                }
+
+                if (c == 0)
+                    b = false;
+
+            }
+
+            return b;
+        }
     }
- }
+}
