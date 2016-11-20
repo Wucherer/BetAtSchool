@@ -3,15 +3,25 @@
 
     Layout = null;
 
-
     int currentQuestion = int.Parse(ViewContext.HttpContext.Session["currentQuestion"] as string);
     string currentPlayer = HttpContext.Current.Session["currentPlayer"] as string;
     UserGuide guide = HttpContext.Current.Session["currentGuide"] as UserGuide;
 }
 
 <script>
+
     function btnNextClick(e)
     {
+        var rightAnswer = $("#RightAnswer").data("KendoCheckBox");
+        var score = $("#txtInset").data("kendoTextBox");
+        
+        if (rightAnswer.checked == true)
+        {
+            score = score.val();
+        } else {
+            score = null;
+        }
+        
          $.ajax(
                 {
                     type: 'GET',
@@ -24,11 +34,25 @@
 
     function btnSkipClick(e)
     {
-
+        $.ajax(
+                {
+                    type: 'GET',
+                    url: '@Url.Action("skipQuestion", "User")',
+                    success: function (result) {
+                        $("#body").html(result);
+                    }
+                });
     }
     function btnExitClick(e)
     {
-
+        $.ajax(
+               {
+                   type: 'GET',
+                   url: '@Url.Action("exitQuestion", "User")',
+                   success: function (result) {
+                       $("#body").html(result);
+                   }
+               });
     }
 </script>
 
@@ -48,9 +72,17 @@
         <ul>
             @for (int i = 0; i < Model.Questions[currentQuestion].Answers.Count; i++)
             {
-                <li>@Html.Kendo().CheckBox().Name("answer" + i) @Model.Questions[currentQuestion].Answers[i].Description</li>
+                if (Model.Questions[currentQuestion].CorrectAnswer == currentQuestion)
+                {
+                    <li>@Html.Kendo().CheckBox().Name("RightAnswer") @Model.Questions[currentQuestion].Answers[i].Description</li>
+                }
+                else
+                {
+                    <li>@Html.Kendo().CheckBox().Name("answer" + i) @Model.Questions[currentQuestion].Answers[i].Description</li>
+                }
             }
         </ul>
+        @Html.Kendo().TextBox().Name("txtInset");
         @Html.Kendo().Button().Name("btnNext").Events(e => e.Click("btnNextClick")).Content("Next")
         @Html.Kendo().Button().Name("btnSkip").Events(e => e.Click("btnSkipClick")).Content("Skip")
         @Html.Kendo().Button().Name("btnExit").Events(e => e.Click("btnExitClick")).Content("Exit")

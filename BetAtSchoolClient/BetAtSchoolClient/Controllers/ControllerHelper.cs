@@ -41,11 +41,6 @@ namespace BetAtSchoolClient.Controllers
             return names;
         }
 
-        public string getCurrentPlayer(UserGuide u) {
-            string result = "dave";
-            return result;
-        }
-
         public bool hasGuest(UserGuide u)
         {
             bool result = true;

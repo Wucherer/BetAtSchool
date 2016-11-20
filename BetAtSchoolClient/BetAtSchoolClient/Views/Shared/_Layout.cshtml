@@ -17,9 +17,7 @@
 	<script src="@Url.Content("~/Scripts/kendo/2016.3.914/jszip.min.js")"></script>
 	<script src="@Url.Content("~/Scripts/kendo/2016.3.914/kendo.all.min.js")"></script>
 </head>
-    <body>
-        @if ((HttpContext.Current.Session["passwordWrong"] as string) != "isSet")
-        {
+    <body>      
         <header style="margin-bottom: 15px;">
             <div class="content-wrapper">
                 <div class="float-left">
@@ -39,7 +37,7 @@
                 </div>
             </div>
         </header>
-        }
+        
         <div id="body">
             @RenderSection("featured", required: false)
             <section class="content-wrapper main-content clear-fix">

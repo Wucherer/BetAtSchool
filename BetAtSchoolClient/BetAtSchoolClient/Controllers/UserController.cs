@@ -33,6 +33,7 @@ namespace BetAtSchoolClient.Controllers
             }
             else { HttpContext.Session.Add("currentQuestion", "0"); }
 
+
             string currStation = HttpContext.Session["currentStation"] as string;
 
             return View(ch.getStationByName(currStation, ch.getAll()));
@@ -43,6 +44,20 @@ namespace BetAtSchoolClient.Controllers
             HttpContext.Session.Add("currentPlayer", player);
             HttpContext.Session.Add("currentStation", name);
             return RedirectToAction("QuestionView", "User");
+        }
+
+        public ActionResult skipQuestion()
+        {
+            int s = int.Parse(HttpContext.Session["currentQuestion"] as string) + 1;
+            HttpContext.Session["currentQuestion"] = s.ToString();
+            return RedirectToAction("QuestionView", "User");
+        }
+
+        public ActionResult exitQuestion()
+        {
+            HttpContext.Session["currentQuestion"] = "0";
+            return RedirectToAction("Index", "User");
+
         }
     }
 }

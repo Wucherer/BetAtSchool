@@ -5,7 +5,6 @@
     Layout = null;
     ControllerHelper ch = new ControllerHelper();
     string currentPlayer = HttpContext.Current.Session["currentPlayer"] as string;
-
     UserGuide guide = HttpContext.Current.Session["currentGuide"] as UserGuide;
     HttpContext.Current.Session.Add("currentPlayer", currentPlayer);
 }
@@ -30,6 +29,7 @@
                     }
                 });
         } else {
+
             msg.text("Please select Station !");
             if (username.val() == "")
             {
@@ -48,8 +48,6 @@
                    success: function (result) {
                        var cb = $("#stations").data("kendoComboBox");
                        cb.setDataSource(result);
-
-
                    }
                });
     }
