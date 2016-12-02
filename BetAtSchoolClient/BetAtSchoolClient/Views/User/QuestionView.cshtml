@@ -90,7 +90,16 @@
                 }
             }
         </ul>
-        @Html.Kendo().TextBox().Name("txtInset");
+        @(Html.Kendo().Slider()
+            .Name("slider")
+            .IncreaseButtonTitle("Right")
+            .DecreaseButtonTitle("Left")
+            .Min(-10)
+            .Max(10)
+            .SmallStep(2)
+            .LargeStep(1)
+            .Value(0)
+            .HtmlAttributes(new { @class = "balSlider" }))
         @Html.Kendo().Button().Name("btnNext").Events(e => e.Click("btnNextClick")).Content("Next")
         @Html.Kendo().Button().Name("btnSkip").Events(e => e.Click("btnSkipClick")).Content("Skip")
         @Html.Kendo().Button().Name("btnExit").Events(e => e.Click("btnExitClick")).Content("Exit")
@@ -136,4 +145,16 @@
             font-size: 12px;
             color: #444;
         }
+
+         .demo-section {
+        text-align: center;
+    }
+
+    div.balSlider {
+        width: 100%;
+    }
+
+    div.balSlider .k-slider-selection {
+        display: none;
+    }
 </style>
