@@ -80,7 +80,14 @@ if (currentPlayer == null)
 }
 else
 {
-    items.Add().Text("Nickname of Guest (is already set)").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname").Enable(false).Value(currentPlayer.name) <label id="msgUsername"></label></div>);
+    if (Model == null)
+    {
+        items.Add().Text("Nickname of Guest").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname").Enable(true).Value(currentPlayer.name) <label id="msgUsername">User already exists !</label></div>);
+    }
+    else
+    {
+        items.Add().Text("Nickname of Guest (is already set)").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname").Enable(false).Value(currentPlayer.name) <label id="msgUsername"></label></div>);
+    }
 }
 
 items.Add().Text("Station").Expanded(true).Content(@<div>

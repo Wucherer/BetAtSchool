@@ -120,6 +120,11 @@ namespace BetAtSchoolClient.Controllers
             return stations;
         }
 
+        public void setScore(string name, decimal score)
+        {
+
+        }
+
         public Station getStationByName(string name, List<Station> all)
         {
 

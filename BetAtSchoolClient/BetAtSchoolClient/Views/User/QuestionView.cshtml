@@ -13,22 +13,23 @@
     function btnNextClick(e)
     {
         var rightAnswer = $("#RightAnswer").data("KendoCheckBox");
-        var score = $("#txtInset").data("kendoTextBox");
+        var bet = $("#slider").data("KendoSlider");
+        var answer = false;
 
         if (rightAnswer.checked == true)
         {
-            $.ajax(
+            answer = true;
+        }
+
+        $.ajax(
                 {
                     type: 'POST',
                     url: '@Url.Action("setScore", "User")',
-                    data: { score: score.val() },
+                    data: { betAmount: bet.value(), isRight: answer },
                     success: function (result) {
 
                     }
                 });
-        } else {
-            score = null;
-        }
 
          $.ajax(
                 {
@@ -73,7 +74,7 @@
 </head>
 <body>
     <div id="currentGuide" class="demo-section k-content">currently logged in: @guide.Username</div>
-    <div id="currentGuide" class="demo-section k-content">currently playing: @currentPlayer.name</div>
+    <div id="currentGuide" class="demo-section k-content">currently playing: @currentPlayer.name Account balance: @currentPlayer.credit</div>
 
     <div id="Login-content" class="demo-section k-content">
         <p class="title">@Model.Questions[currentQuestion].Description</p>
@@ -94,12 +95,13 @@
             .Name("slider")
             .IncreaseButtonTitle("Right")
             .DecreaseButtonTitle("Left")
-            .Min(-10)
-            .Max(10)
-            .SmallStep(2)
+            .Min(0)
+            .Max(double.Parse(currentPlayer.credit.ToString()))
+            .SmallStep(1)
             .LargeStep(1)
             .Value(0)
             .HtmlAttributes(new { @class = "balSlider" }))
+        <br />
         @Html.Kendo().Button().Name("btnNext").Events(e => e.Click("btnNextClick")).Content("Next")
         @Html.Kendo().Button().Name("btnSkip").Events(e => e.Click("btnSkipClick")).Content("Skip")
         @Html.Kendo().Button().Name("btnExit").Events(e => e.Click("btnExitClick")).Content("Exit")
