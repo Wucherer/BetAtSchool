@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BetAtSchoolClient.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,6 +25,14 @@ namespace BetAtSchoolClient.Controllers
 
         public ActionResult QuestionView()
         {
+            Player p = HttpContext.Session["currentPlayer"] as Player;
+
+            if(p.name == null)
+            {
+                p = new Player();
+                HttpContext.Session.Add("currentPlayer", p);
+            }
+
             string s = HttpContext.Session["currentQuestion"] as string;
             if (s != null)
             {
@@ -39,19 +48,18 @@ namespace BetAtSchoolClient.Controllers
 
         public ActionResult setStation(string name, string player)
         {
-            HttpContext.Session.Add("currentPlayer", player);
+            Player p = new Player(player, 100);
+            HttpContext.Session.Add("currentPlayer", p);
             HttpContext.Session.Add("currentStation", name);
-            bool b = ch.checkIfUserExists(player);
-            //Wenn false zurückkommt, kann "player" ohne Bedenken benutzt werden
-            if(!b)
-            {
-
-            }
-            else
-            {
-                
-            }
+            bool b = ch.checkIfUserExists(player); 
+            
             return RedirectToAction("QuestionView", "User");
+        }
+
+        public ActionResult setScore(string score)
+        {
+
+            return Content("");
         }
 
         public ActionResult skipQuestion()

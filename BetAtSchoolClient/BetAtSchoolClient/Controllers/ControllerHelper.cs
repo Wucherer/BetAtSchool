@@ -13,12 +13,12 @@ namespace BetAtSchoolClient.Controllers
         public List<Station> Allstations { get; set; }
         public List<string> names { get; set; }
 
-        string cs = "Provider=OraOLEDB.Oracle;Data Source=212.152.179.117/ora11g;User Id=d5b21;Password=wucki;OLEDB.NET=True;";
+        string cs = "Provider=OraOLEDB.Oracle;Data Source=212.152.179.117:1521/ora11g;User Id=d5b22;Password=wucki;OLEDB.NET=True;";
         public UserGuide getUser(string user, string pw)
         {
             UserGuide ug = null;
-
-            /*using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "192.168.128.253", "OU=EDVO,OU=Schueler,OU=Benutzer,DC=htl-vil,DC=local"))
+            /*
+            using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "192.168.128.253", "OU=EDVO,OU=Schueler,OU=Benutzer,DC=htl-vil,DC=local"))
             {
                 // validate the credentials
                 if(pc.ValidateCredentials(user, pw))
@@ -52,7 +52,7 @@ namespace BetAtSchoolClient.Controllers
         {
 
             List<Station> stations = new List<Station>();
-            string connectionString = "Provider=OraOLEDB.Oracle;Data Source=212.152.179.117/ora11g;User Id=d5b22;Password=wucki;OLEDB.NET=True;";
+            string connectionString = cs;
             using (OleDbConnection oleDbConnection = new OleDbConnection(connectionString))
             {
                 OleDbCommand oleDbCommand = new OleDbCommand("select * from station");
@@ -133,10 +133,10 @@ namespace BetAtSchoolClient.Controllers
         public bool checkIfUserExists(string user)
         {
             int c = -1;
-            bool b = true;
+            bool userAlreadyExists = false;
             using (OleDbConnection oleDbConnection = new OleDbConnection(cs))
             {
-                OleDbCommand oleDbCommand = new OleDbCommand("select count(*) from USERTDOT where username = ?;");
+                OleDbCommand oleDbCommand = new OleDbCommand("select count(*) from USERTDOT where username = ?");
                 oleDbCommand.Parameters.Add("?", user);
                 oleDbConnection.Open();
                 oleDbCommand.Connection = oleDbConnection;
@@ -147,12 +147,14 @@ namespace BetAtSchoolClient.Controllers
                     c = (int)oleDbDataReader.GetDecimal(0);
                 }
 
-                if (c == 0)
-                    b = false;
+                if(c>0)
+                {
+                    userAlreadyExists = true;
+                }
 
             }
 
-            return b;
+            return userAlreadyExists;
         }
     }
 }

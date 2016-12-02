@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
     Layout = null;
     ControllerHelper ch = new ControllerHelper();
-    string currentPlayer = HttpContext.Current.Session["currentPlayer"] as string;
+    Player currentPlayer = HttpContext.Current.Session["currentPlayer"] as Player;
     UserGuide guide = HttpContext.Current.Session["currentGuide"] as UserGuide;
     HttpContext.Current.Session.Add("currentPlayer", currentPlayer);
 }
@@ -56,10 +56,6 @@
 </script>
 <div id="Login-content" class="demo-section k-content">
     <p id="currentGuide" class="demo-section k-content">currently logged in: @guide.Username</p>
-    @if (currentPlayer == null)
-    {
-        <p id="currentPlayer" class="demo-section k-content">currently playing: @currentPlayer</p>
-    }
 
     @if(currentPlayer == null)
     {
@@ -75,8 +71,9 @@ if (currentPlayer == null)
 {
     items.Add().Text("Nickname of Guest").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname") <label id="msgUsername"></label></div>);
 }
-else {
-    items.Add().Text("currently playing: " + currentPlayer).Expanded(false);
+else
+{
+    items.Add().Text("Nickname of Guest (is already set)").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname").Enable(false).Value(currentPlayer.name) <label id="msgUsername"></label></div>);
 }
 
 items.Add().Text("Station").Expanded(true).Content(@<div>
