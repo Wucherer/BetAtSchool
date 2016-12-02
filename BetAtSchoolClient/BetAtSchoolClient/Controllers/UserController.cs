@@ -48,12 +48,17 @@ namespace BetAtSchoolClient.Controllers
 
         public ActionResult setStation(string name, string player)
         {
-            Player p = new Player(player, 100);
-            HttpContext.Session.Add("currentPlayer", p);
-            HttpContext.Session.Add("currentStation", name);
-            bool b = ch.checkIfUserExists(player); 
-            
-            return RedirectToAction("QuestionView", "User");
+            string s = null;
+            if(ch.checkIfUserExists(player) != true)
+            {
+                Player p = new Player(player, 100); 
+                HttpContext.Session.Add("currentPlayer", p);
+                HttpContext.Session.Add("currentStation", name);
+                return RedirectToAction("QuestionView", "User");
+            } else
+            {
+                return View("../User/Index");
+            }
         }
 
         public ActionResult setScore(string score)

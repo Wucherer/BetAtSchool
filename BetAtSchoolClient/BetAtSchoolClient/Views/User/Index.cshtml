@@ -16,8 +16,8 @@
         var username = $('#txtNickname');
         var cb = $("#stations").data("kendoComboBox");
         var text = cb.value();
-       
-        if (text != null)
+
+        if (text != null && username.val() != "")
         {
             $.ajax(
                 {
@@ -31,11 +31,10 @@
         } else {
 
             msg.text("Please select Station !");
-            if (username.val() == "")
-            {
+            if (username.val() == "") {
                 msg.text("Please select Station and create User !");
             }
-            
+
         }
 
 
@@ -67,9 +66,17 @@
     }
     @Html.Kendo().PanelBar().Name("panelRegister").Items(items =>
 {
+
 if (currentPlayer == null)
 {
-    items.Add().Text("Nickname of Guest").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname") <label id="msgUsername"></label></div>);
+    if (Model == null)
+    {
+        items.Add().Text("Nickname of Guest").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname") <label id="msgUsername">User already exists !</label></div>);
+    }
+    else
+    {
+        items.Add().Text("Nickname of Guest").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname") <label id="msgUsername"></label></div>);
+    }
 }
 else
 {
