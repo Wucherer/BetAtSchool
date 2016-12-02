@@ -10,7 +10,7 @@ namespace BetAtSchoolClient.Models
 
         public int QId { get; set; }
         public string Description { get; set;}
-        public int Quote { get; set; }
+        public decimal Quote { get; set; }
         public List<Answer> Answers { get; set; }
         public int CorrectAnswer { get; set; }
 

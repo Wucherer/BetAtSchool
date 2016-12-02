@@ -25,6 +25,8 @@ namespace BetAtSchoolClient.Controllers
 
         public ActionResult QuestionView()
         {
+            //---------------------------------------- get Player only 1 time
+
             Player p = HttpContext.Session["currentPlayer"] as Player;
 
             if(p.name == null)
@@ -33,6 +35,8 @@ namespace BetAtSchoolClient.Controllers
                 HttpContext.Session.Add("currentPlayer", p);
             }
 
+            //---------------------------------------- get Question only 1 time
+
             string s = HttpContext.Session["currentQuestion"] as string;
             if (s != null)
             {
@@ -40,6 +44,11 @@ namespace BetAtSchoolClient.Controllers
             }
             else { HttpContext.Session.Add("currentQuestion", "0"); }
 
+            //---------------------------------------- get Stations only 1 time
+            List<Station> l = HttpContext.Session["allStations"] as List<Station>;
+            if (l == null) {
+                HttpContext.Session.Add("allStations", ch.getAll());
+            }
 
             string currStation = HttpContext.Session["currentStation"] as string;
 
@@ -61,10 +70,21 @@ namespace BetAtSchoolClient.Controllers
             }
         }
 
-        public ActionResult setScore(string score)
+        public ActionResult setScore(string betAmount, bool isCorrect)
         {
+            if(isCorrect == true)
+            {
+                List<Station> allStations = HttpContext.Session["allStations"] as List<Station>;
+                var allQuestionsOfStation = allStations.Where(x => x.StationName == HttpContext.Session["currentStation"] as string).Select(x => x.Questions).ToList();
+                decimal q = allQuestionsOfStation[int.Parse(HttpContext.Session["currentQuestion"] as string)].Select(x => x.Quote).FirstOrDefault();
+                decimal newScore = decimal.Parse(betAmount) * q;
 
-            return Content("");
+                ch.setScore((HttpContext.Session["currentPlayer"] as Player).name, newScore);
+            } else
+            {
+                ch.setScore((HttpContext.Session["currentPlayer"] as Player).name, (HttpContext.Session["currentPlayer"] as Player).credit - decimal.Parse(betAmount));
+            }
+            return RedirectToAction("QuestionView", "User");
         }
 
         public ActionResult skipQuestion()
