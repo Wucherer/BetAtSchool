@@ -54,6 +54,7 @@ namespace BetAtSchoolClient.Controllers
                 Player p = new Player(player, 100); 
                 HttpContext.Session.Add("currentPlayer", p);
                 HttpContext.Session.Add("currentStation", name);
+                ch.InsertUserInDB(player);
                 return RedirectToAction("QuestionView", "User");
             } else
             {
