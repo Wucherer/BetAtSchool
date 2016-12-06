@@ -22,8 +22,8 @@
             $.ajax(
                 {
                     type: 'GET',
-                    url: '@Url.Action("setStation", "User")',
-                    data: { name: text, player: username.val() },
+                    url: '@Url.Action("setGame", "User")',
+                    data: {player: username.val() },
                     success: function (result) {
                         $("#body").html(result);
                     }
@@ -89,26 +89,6 @@ else
         items.Add().Text("Nickname of Guest (is already set)").Expanded(true).Content(@<div>@Html.Kendo().TextBox().Name("txtNickname").Enable(false).Value(currentPlayer.name) <label id="msgUsername"></label></div>);
     }
 }
-
-items.Add().Text("Station").Expanded(true).Content(@<div>
-        @(Html.Kendo().ComboBox()
-          .Name("stations")
-          .Placeholder("Select station")
-          .HtmlAttributes(new { style = "width:100%;" })
-          .Filter("contains")
-          .AutoBind(false)
-          .MinLength(3)
-          .DataSource(source =>
-          {
-              source.Read(read =>
-              {
-                  read.Action("getAllStations", "User");
-              });
-
-          }).Events(e=>e.Change("CbxCh"))
-                                                                )
-
-    </div>);
     })
     
     @Html.Kendo().Button().Name("btnStartQuiz").Content("Start Quiz !").Events(e => e.Click("btnStartClick")) <label id="msgLogin"></label>

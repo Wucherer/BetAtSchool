@@ -3,65 +3,33 @@
 
     Layout = null;
 
-    int currentQuestion = int.Parse(ViewContext.HttpContext.Session["currentQuestion"] as string);
+    int currentQuestion = 0;
+    int currentStation = 0;
     Player currentPlayer = HttpContext.Current.Session["currentPlayer"] as Player;
     UserGuide guide = HttpContext.Current.Session["currentGuide"] as UserGuide;
+    string desc = Model[currentStation].Questions[currentQuestion].Description;
+    string stat = Model[currentStation].StationName;
 }
 
 <script>
+    var currQ = 0;
 
     function btnNextClick(e)
     {
-        var rightAnswer = $("#RightAnswer").data("KendoCheckBox");
-        var bet = $("#slider").data("KendoSlider");
-        var answer = false;
-
-        if (rightAnswer.checked == true)
-        {
-            answer = true;
-        }
-
-        $.ajax(
-                {
-                    type: 'POST',
-                    url: '@Url.Action("setScore", "User")',
-                    data: { betAmount: bet.value(), isRight: answer },
-                    success: function (result) {
-
-                    }
-                });
-
-         $.ajax(
-                {
-                    type: 'GET',
-                    url: '@Url.Action("QuestionView", "User")',
-                    success: function (result) {
-                        $("#body").html(result);
-                    }
-                });
+        document.getElementById(currQ).style().visiblity = hidden;
+        document.getElementById(currQ + 1).style().visiblity = visible;
+        currQ = currQ + 1;
     }
 
-    function btnSkipClick(e)
+    function btnAnswerClick(e)
     {
-        $.ajax(
-                {
-                    type: 'GET',
-                    url: '@Url.Action("skipQuestion", "User")',
-                    success: function (result) {
-                        $("#body").html(result);
-                    }
-                });
+        
     }
-    function btnExitClick(e)
+    function btnPrevClick(e)
     {
-        $.ajax(
-               {
-                   type: 'GET',
-                   url: '@Url.Action("exitQuestion", "User")',
-                   success: function (result) {
-                       $("#body").html(result);
-                   }
-               });
+        document.getElementById(currQ).style().visiblity = "hidden";
+        document.getElementById(currQ - 1).style().visiblity = "visible";
+        currQ = currQ - 1;
     }
 </script>
 
@@ -73,39 +41,131 @@
     <title>QuestionView</title>
 </head>
 <body>
-    <div id="currentGuide" class="demo-section k-content">currently logged in: @guide.Username</div>
-    <div id="currentGuide" class="demo-section k-content">currently playing: @currentPlayer.name Account balance: @currentPlayer.credit</div>
+    <p id="currentPlayer" class="demo-section k-content">currently playing: @currentPlayer.name</p>
+    <p id="currentStation" class="demo-section k-content">current Station: @stat</p>
+    @Html.Kendo().PanelBar().Name("panelQuestion").Items(items =>
+    {
+        items.Add().Expanded(true).Content(
+            @<div id="Login-content" class="demo-section k-content">
+                 <div id = 0 style="visibility: visible"> 
+                     <ul>
+                         <li id = @Model[0].Question[0].Quote>@Model[0].Question[0].Description <br /> Quote: @Model[0].Question[0].Quote</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 0 }) @Model[0].Questions[0].Answers[0].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 1 }) @Model[0].Questions[0].Answers[1].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 2 }) @Model[0].Questions[0].Answers[2].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 3 }) @Model[0].Questions[0].Answers[3].Description</li>
+                     </ul>
+                 </div>
+                 <div id=1 style="visibility: hidden">
+                     <ul>
+                         <li id=@Model[1].Question[0].Quote>@Model[1].Question[0].Description <br /> Quote: @Model[1].Question[0].Quote</li>
 
-    <div id="Login-content" class="demo-section k-content">
-        <p class="title">@Model.Questions[currentQuestion].Description</p>
-        <ul>
-            @for (int i = 0; i < Model.Questions[currentQuestion].Answers.Count; i++)
-            {
-                if (Model.Questions[currentQuestion].CorrectAnswer == currentQuestion)
-                {
-                    <li>@Html.Kendo().CheckBox().Name("RightAnswer") @Model.Questions[currentQuestion].Answers[i].Description</li>
-                }
-                else
-                {
-                    <li>@Html.Kendo().CheckBox().Name("answer" + i) @Model.Questions[currentQuestion].Answers[i].Description</li>
-                }
-            }
-        </ul>
-        @(Html.Kendo().Slider()
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 0 }) @Model[1].Questions[0].Answers[0].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 1 }) @Model[1].Questions[0].Answers[1].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 2 }) @Model[1].Questions[0].Answers[2].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 3 }) @Model[1].Questions[0].Answers[3].Description</li>
+                     </ul>
+                 </div>
+                 <div id=2 style="visibility: hidden">
+                     <ul>
+                         <li id=@Model[2].Question[0].Quote>@Model[0].Question[0].Description <br /> Quote: @Model[0].Question[0].Quote</li>
+
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 0 }) @Model[2].Questions[0].Answers[0].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 1 }) @Model[2].Questions[0].Answers[1].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 2 }) @Model[2].Questions[0].Answers[2].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 3 }) @Model[2].Questions[0].Answers[3].Description</li>
+                     </ul>
+                 </div>
+                 <div id=3 style="visibility: hidden">
+                     <ul>
+                         <li id=@Model[3].Question[0].Quote>@Model[3].Question[0].Description <br /> Quote: @Model[3].Question[0].Quote</li>
+
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 0 }) @Model[3].Questions[0].Answers[0].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 1 }) @Model[3].Questions[0].Answers[1].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 2 }) @Model[3].Questions[0].Answers[2].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 3 }) @Model[3].Questions[0].Answers[3].Description</li>
+                     </ul>
+                 </div>
+                 <div id=4 style="visibility: hidden">
+                     <ul>
+                         <li id=@Model[4].Question[0].Quote>@Model[4].Question[0].Description <br /> Quote: @Model[4].Question[0].Quote</li>
+
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 0 }) @Model[4].Questions[0].Answers[0].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 1 }) @Model[4].Questions[0].Answers[1].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 2 }) @Model[4].Questions[0].Answers[2].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 3 }) @Model[4].Questions[0].Answers[3].Description</li>
+                     </ul>
+                 </div>
+                 <div id=5 style="visibility: hidden">
+                     <ul>
+                         <li id=@Model[5].Question[0].Quote>@Model[5].Question[0].Description <br /> Quote: @Model[5].Question[0].Quote</li>
+
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 0 }) @Model[5].Questions[0].Answers[0].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 1 }) @Model[5].Questions[0].Answers[1].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 2 }) @Model[5].Questions[0].Answers[2].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 3 }) @Model[5].Questions[0].Answers[3].Description</li>
+                     </ul>
+                 </div>
+                 <div id=6 style="visibility: hidden">
+                     <ul>
+                         <li id=@Model[6].Question[0].Quote>@Model[6].Question[0].Description <br /> Quote: @Model[6].Question[0].Quote</li>
+
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 0 }) @Model[6].Questions[0].Answers[0].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 1 }) @Model[6].Questions[0].Answers[1].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 2 }) @Model[6].Questions[0].Answers[2].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 3 }) @Model[6].Questions[0].Answers[3].Description</li>
+                     </ul>
+                 </div>
+                 <div id=7 style="visibility: hidden">
+                     <ul>
+                         <li id=@Model[7].Question[0].Quote>@Model[7].Question[0].Description <br /> Quote: @Model[7].Question[0].Quote</li>
+
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 0 }) @Model[7].Questions[0].Answers[0].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 1 }) @Model[7].Questions[0].Answers[1].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 2 }) @Model[7].Questions[0].Answers[2].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 3 }) @Model[7].Questions[0].Answers[3].Description</li>
+                     </ul>
+                 </div>
+                 <div id=8 style="visibility: hidden">
+                     <ul>
+                         <li id=@Model[8].Question[0].Quote>@Model[8].Question[0].Description <br /> Quote: @Model[8].Question[0].Quote</li>
+
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 0 }) @Model[8].Questions[0].Answers[0].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 1 }) @Model[8].Questions[0].Answers[1].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 2 }) @Model[8].Questions[0].Answers[2].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 3 }) @Model[8].Questions[0].Answers[3].Description</li>
+                     </ul>
+                 </div>
+                 <div id=9 style="visibility: hidden">
+                     <ul>
+                         <li id=@Model[9].Question[0].Quote>@Model[9].Question[0].Description <br /> Quote: @Model[9].Question[0].Quote</li>
+
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 0 }) @Model[9].Questions[0].Answers[0].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 1 }) @Model[9].Questions[0].Answers[1].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 2 }) @Model[9].Questions[0].Answers[2].Description</li>
+                         <li>@Html.Kendo().RadioButton().Name("answer").HtmlAttributes(new { id = 3 }) @Model[9].Questions[0].Answers[3].Description</li>
+                     </ul>
+                 </div>
+             </div>  
+     );
+    })
+
+    @(Html.Kendo().Slider()
             .Name("slider")
             .IncreaseButtonTitle("Right")
             .DecreaseButtonTitle("Left")
             .Min(0)
-            .Max(double.Parse(currentPlayer.credit.ToString()))
+            .Max(500)  
             .SmallStep(1)
             .LargeStep(1)
             .Value(0)
             .HtmlAttributes(new { @class = "balSlider" }))
-        <br />
-        @Html.Kendo().Button().Name("btnNext").Events(e => e.Click("btnNextClick")).Content("Next")
-        @Html.Kendo().Button().Name("btnSkip").Events(e => e.Click("btnSkipClick")).Content("Skip")
-        @Html.Kendo().Button().Name("btnExit").Events(e => e.Click("btnExitClick")).Content("Exit")
-    </div>
+    <br />
+    <p id="msgSlider" style="visibility: hidden; color: red">too much !</p>
+    @Html.Kendo().Button().Name("btnPrev").Events(e => e.Click("btnPrevClick")).Content("Back")
+    @Html.Kendo().Button().Name("btnAnswer").Events(e => e.Click("btnAnswerClick")).Content("Answer")
+    @Html.Kendo().Button().Name("btnNext").Events(e => e.Click("btnNextClick")).Content("Next")
+</div>
 
 </body>
 </html>
