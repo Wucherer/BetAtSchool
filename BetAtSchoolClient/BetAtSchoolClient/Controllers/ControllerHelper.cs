@@ -13,7 +13,7 @@ namespace BetAtSchoolClient.Controllers
         public List<Station> Allstations { get; set; }
         public List<string> names { get; set; }
 
-        string cs = "Provider=OraOLEDB.Oracle;Data Source=aphrodite4:1521/ora11g;User Id=d5b22;Password=wucki;OLEDB.NET=True;";
+        string cs = "Provider=OraOLEDB.Oracle;Data Source=212.152.179.117:1521/ora11g;User Id=d5b22;Password=wucki;OLEDB.NET=True;";
         public UserGuide getUser(string user, string pw)
         {
             UserGuide ug = null;
