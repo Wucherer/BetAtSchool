@@ -25,15 +25,21 @@ namespace BetAtSchoolClient.Controllers
             HttpContext.Session.Add("currentGuide", u);
             
             string s = null;
-
-            if(u != null)
+            if (ch.checkAdmin(username) == true)
             {
-                s = "../User/Index";
-            }else
-            {
-                s = "../Login/Index";
+                s = "../User/Admin";
             }
-
+            else
+            {
+                if (u != null)
+                {
+                    s = "../User/Index";
+                }
+                else
+                {
+                    s = "../Login/Index";
+                }
+            }
             return View(s, u);
         }
     }

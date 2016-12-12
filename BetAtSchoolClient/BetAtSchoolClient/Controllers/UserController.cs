@@ -70,6 +70,16 @@ namespace BetAtSchoolClient.Controllers
             }
         }
 
+        public ActionResult getAllPlayerNames()
+        {
+            return Json(ch.getAllPlayerNames());
+        }
+
+        public ActionResult deletePlayer(string player)
+        {
+            return Content((ch.deletePlayer(player)).ToString());
+        }
+
         public ActionResult setScore(string betAmount, bool isCorrect)
         {
             if(isCorrect == true)
@@ -99,6 +109,11 @@ namespace BetAtSchoolClient.Controllers
             HttpContext.Session["currentQuestion"] = "0";
             return RedirectToAction("Index", "User");
 
+        }
+
+        public ActionResult Admin()
+        {
+            return View();
         }
     }
 }

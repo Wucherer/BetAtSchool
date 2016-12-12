@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<script>
+    function btnDeletePlayerClick(e) {
+        var cbx = $("#player").data("kendoComboBox");
+
+        $.ajax(
+                {
+                    type: 'POST',
+                    url: '@Url.Action("deletePlayer", "User")',
+                    data: { player: cbx.value() },
+                    success: function (result) {
+
+                        if (result == "true")
+                        {
+                            $("#msgPlayer").text("Successfully deleted !");
+                        } else {
+                            $("#msgPlayer").text("Something went wrong !");
+                        }
+                        
+                    }
+                });
+    }
+
+
+
+
+
+</script>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin</title>
+</head>
+<body>
+    <div id="Login-content" class="demo-section k-content"> 
+    @Html.Kendo().PanelBar().Name("panelRegister").Items(items =>
+{
+    items.Add().Text("User Actions").Content(@<div>
+       @(Html.Kendo().ComboBox()
+               .Name("player")
+               .Placeholder("Select player")
+               .HtmlAttributes(new { style = "width:100%;" })
+               .Filter("contains")
+               .AutoBind(false)
+               .MinLength(4)
+               .DataSource(source =>
+               {
+                   source.Read(read =>
+                   {
+                       read.Action("getAllPlayerNames", "User");
+                   });
+               })
+    )
+        @Html.Kendo().Button().Name("btnDeletePlayer").Content("delete").Events(e => e.Click("btnDeletePlayerClick"));
+        <label id="msgPlayer"></label>
+        
+        
+        </div>);
+})
+    </div>
+</body>
+</html>

@@ -120,6 +120,8 @@ namespace BetAtSchoolClient.Controllers
             return stations;
         }
 
+        
+
         public void setScore(string name, decimal score)
         {
 
@@ -162,6 +164,8 @@ namespace BetAtSchoolClient.Controllers
             return userAlreadyExists;
         }
 
+        
+
         public void InsertUserInDB(string user)
         {
             using (OleDbConnection oleConn = new OleDbConnection(cs))
@@ -173,6 +177,40 @@ namespace BetAtSchoolClient.Controllers
                 oledbcommand.Connection = oleConn;
                 oledbcommand.ExecuteNonQuery();
             }
+        }
+
+
+        /// <summary>
+        /// soll in dem Table "Admins" (hab ich bereits in der DB erstellt) den username
+        /// überprüfen, Name in der Tabelle ist der gleiche. (also "username")
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns>true or false (wenn vorhanden oder nicht)</returns>
+        public bool checkAdmin(string username)
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// soll in der Datenbank alle Player Namen holen und diese zurück geben
+        /// </summary>
+        /// <returns>List<string></returns>
+        public List<string> getAllPlayerNames()
+        {
+            List<string> allPlayer = new List<string>();
+
+            return allPlayer;
+        }
+
+        /// <summary>
+        /// Soll player aus der Db löschen und evtl Guide wieder frei geben, wenn löschen nicht erfolgreich 
+        /// dann soll "false" zurück gegeben werden.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns>true or false</returns>
+        public bool deletePlayer(string player)
+        {
+            return false;
         }
     }
 }

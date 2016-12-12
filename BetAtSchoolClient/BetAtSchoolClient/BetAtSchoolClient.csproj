@@ -498,7 +498,9 @@
     <Content Include="Content\kendo\2016.3.914\Uniform\sprite_kpi_2x.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\check_circle.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\wrong.png" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -887,6 +889,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\QuestionView.cshtml" />
+    <Content Include="Views\User\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
